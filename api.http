@@ -1,0 +1,106 @@
+POST http://localhost:5000/api/countries/
+Content-Type: application/json
+
+{
+  "name": "Việt Nam"
+}
+
+###
+
+POST http://localhost:5000/api/cities/
+Content-Type: application/json
+
+{
+  "name": "Hồ Chí Minh",
+  "countryId": "6268acf654d1f6ea66c6790a"
+}
+
+###
+
+POST http://localhost:5000/api/companies/
+Content-Type: application/json
+
+{
+  "name": "Taco"
+}
+
+###
+
+POST http://localhost:5000/api/branches/
+Content-Type: application/json
+
+{
+  "name": "Toco Toco",
+  "companyId": "6268ad7d54d1f6ea66c67910"
+}
+
+###
+
+POST http://localhost:5000/api/stores/
+Content-Type: application/json
+
+{
+  "name": "Toco Toco Cầu Giấy",
+  "branchId": "6268adb354d1f6ea66c67912"
+}
+
+###
+
+POST http://localhost:5000/api/ingredients/
+Content-Type: application/json
+
+{
+  "name": "Đá",
+  "price": 1,
+  "recipes": [
+    {
+      "name": "0% đá"
+    },
+    {
+      "name": "50% đá"
+    },
+    {
+      "name": "100% đá"
+    }
+  ],
+  "levelScope": "store",
+  "levelScopeId": "6268ae3754d1f6ea66c67915"
+}
+
+###
+
+GET http://localhost:5000/api/ingredients?levelScope=store&levelScopeId=6268ae3754d1f6ea66c67915
+
+###
+
+POST http://localhost:5000/api/menu-items/
+Content-Type: application/json
+
+{
+  "name": "Trà sữa socola",
+  "spotPrice": 30000,
+  "takeawayPrice": 30000,
+  "ingredientIds": [
+    "6268aeaf54d1f6ea66c67917",
+    "6268aec154d1f6ea66c6791c"
+  ],
+  "levelScope": "store",
+  "levelScopeId": "6268ae3754d1f6ea66c67915"
+}
+
+###
+
+GET http://localhost:5000/api/menu-items?storeId=6268ae3754d1f6ea66c67915&ingredients=true
+
+###
+
+POST http://localhost:5000/api/menu-item-buckets/
+Content-Type: application/json
+
+{
+  "storeId": "6268ae3754d1f6ea66c67915"
+}
+
+###
+
+GET http://localhost:5000/api/menu-item-buckets?storeId=6268ae3754d1f6ea66c67915&page=1&ingredients=true

@@ -1,0 +1,26 @@
+import {NextFunction, Request, Response} from 'express'
+import Joi from 'joi'
+import {HTTP_STATUS} from '../constant/httpStatus'
+
+const create = async (req: Request, res: Response, next: NextFunction) => {
+  const condition = Joi.object({
+    name: Joi.string().required().trim().min(2).max(20),
+  })
+
+  try {
+    const bodyParams = await condition.validateAsync(req.body, {
+      abortEarly: false,
+    })
+    res.locals.bodyParams = bodyParams
+    next()
+  } catch (error: any) {
+    next({
+      status: HTTP_STATUS.BAD_REQUEST,
+      message: error.message,
+    })
+  }
+}
+
+export const countryValidation = {
+  create,
+}
